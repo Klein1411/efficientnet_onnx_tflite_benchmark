@@ -442,3 +442,14 @@ Chốt 5 thông tin:
 - Blockers: không blocker kỹ thuật, nhưng accuracy bị suy giảm so với FP32 nên trạng thái cuối là `COMPLETED_WITH_ACCURACY_DEGRADATION`
 - Next milestone: Milestone 6, chỉ khi được yêu cầu rõ ràng
 
+
+## Context Delta — Milestone 6
+
+- Thời gian: 2026-07-13 19:38:55 SE Asia Standard Time
+- File tạo/sửa: `notebooks/efficientnet_onnx_tflite_benchmark.ipynb`, `reports/comparison_summary.md`, `figures/model_size_comparison.png`, `figures/fps_comparison.png`, `figures/latency_comparison.png`, `figures/accuracy_comparison.png`, `figures/memory_comparison.png`, `CONTEXT.md`
+- Bảng tổng hợp: 5 model thật đã được kiểm tra từ `results/benchmark_results.csv`
+- Kết luận model tốt nhất: chính xác nhất là 3 bản FP32 đồng hạng; nhanh nhất là ONNX FP32; nhỏ nhất là ONNX INT8; trade-off tốt nhất là ONNX FP32
+- INT8: accuracy giảm so với FP32; không được diễn giải là luôn nhanh hơn hoặc tốt hơn
+- Notebook output status: các cell tổng hợp/biểu đồ/báo cáo đã được thêm; cell cuối sẽ chốt `PROJECT_COMPLETED`
+- Blockers: không có blocker mới
+- Next milestone: không có; dự án đã hoàn thiện
