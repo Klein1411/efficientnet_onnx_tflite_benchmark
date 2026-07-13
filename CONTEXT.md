@@ -424,3 +424,21 @@ Chốt 5 thông tin:
 - Blockers: khong co blocker; validation va benchmark TFLite deu PASS
 - Next milestone: Milestone 5, chi khi duoc yeu cau ro rang
 
+## Context Delta — Milestone 5
+
+- Thời gian: 2026-07-13 (Asia/Ho_Chi_Minh)
+- File tạo/sửa: `notebooks/efficientnet_onnx_tflite_benchmark.ipynb`, `results/benchmark_results.csv`, `results/predictions_onnx_int8.csv`, `results/predictions_tflite_int8.csv`, `models/onnx/efficientnetb0_int8.onnx`, `models/tflite/efficientnetb0_int8.tflite`, `CONTEXT.md`
+- Calibration dataset: đúng 100 ảnh từ `data/manifests/calibration_100.csv`
+- ONNX INT8 config: `QDQ`, activation `QUInt8`, weight `QInt8`, calibration `MinMax`, quantized operators `Conv`, `MatMul`, `Gemm`, provider `CPUExecutionProvider`
+- TFLite INT8 config: full integer quantization, `supported_ops=TFLITE_BUILTINS_INT8`, input dtype `int8`, output dtype `int8`, representative dataset từ `calibration_100.csv`
+- Quantization parameters: TFLite input scale `1.0`, zero-point `-128`; output scale `0.00390625`, zero-point `-128`
+- Validation results: ONNX INT8 subset top-1 `1.0`, top-5 `1.0`; TFLite INT8 subset top-1 `1.0`, top-5 `1.0`
+- Accuracy: ONNX INT8 top-1 `0.702`, top-5 `0.954`; TFLite INT8 top-1 `0.714`, top-5 `0.954`
+- Latency/FPS: ONNX INT8 model-only mean `11.630454 ms`, FPS `85.981165`; end-to-end mean `13.527 ms` khoảng xấp xỉ theo notebook; TFLite INT8 model-only mean `134.371102 ms`, FPS `7.442076`
+- RAM/CPU: dùng monitor nền; process CPU có thể vượt `100%` trên máy nhiều logical processors
+- Size reduction: ONNX INT8 `72.434035%` so với `.keras`; TFLite INT8 `71.958175%` so với `.keras`
+- Speedup: ONNX INT8 `12.037465x` so với TensorFlow baseline; TFLite INT8 `1.041899x` so với TensorFlow baseline
+- Notebook output status: saved in-place; 20/20 code cells executed; 20/20 code cells có output
+- Blockers: không blocker kỹ thuật, nhưng accuracy bị suy giảm so với FP32 nên trạng thái cuối là `COMPLETED_WITH_ACCURACY_DEGRADATION`
+- Next milestone: Milestone 6, chỉ khi được yêu cầu rõ ràng
+
