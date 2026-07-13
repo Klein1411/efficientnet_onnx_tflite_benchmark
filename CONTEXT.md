@@ -408,3 +408,19 @@ Chốt 5 thông tin:
 - Blockers: khong co blocker; benchmark va validation deu PASS
 - Next milestone: Milestone 4, TFLite FP32, chi khi duoc yeu cau ro rang
 
+## Context Delta — Milestone 4
+
+- Thời gian: 2026-07-13 (Asia/Ho_Chi_Minh)
+- File tạo/sửa: `notebooks/efficientnet_onnx_tflite_benchmark.ipynb`, `results/benchmark_results.csv`, `results/predictions_tflite.csv`, `models/tflite/efficientnetb0_fp32.tflite`, `CONTEXT.md`
+- Converter/interpreter status: TensorFlow 2.15.1 TFLiteConverter PASS; `tf.lite.Interpreter` PASS; `num_threads=1`
+- Input/output dtype và shape: input `float32` `[1, 224, 224, 3]`; output `float32` `[1, 1000]`
+- Numerical equivalence: subset 10 ảnh; max abs diff `1.6689300537109375e-06`; mean abs diff `1.4003690623765054e-09`; top-1 agreement `1.0`; top-5 agreement `1.0`
+- Accuracy: top-1 `0.836`; top-5 `0.974`
+- Latency/FPS: model-only mean `55.28282760005095 ms`, median `53.61695000101463 ms`, p95 `66.80205999946338 ms`, FPS `18.08879978489158`; end-to-end mean `56.66559540005983 ms`, median `55.9565500007011 ms`, p95 `62.323674999424824 ms`, FPS `17.64739244227449`
+- RAM/CPU: RAM avg/peak `2109.18 MB / 2109.23 MB`; process CPU avg/peak `32.36% / 101.9%`; system CPU avg/peak `5.24% / 32.5%`; GPU/VRAM chi la background monitor, khong ket luan TFLite dung GPU
+- Speedup: `2.564775x` so voi TensorFlow baseline; `0.174958x` so voi ONNX FP32
+- Size reduction: `4.087452%` so voi `.keras`
+- Notebook output status: saved in-place; 15/15 code cells executed; 15/15 code cells co output; cell cuoi hien `READY_FOR_MILESTONE_5`
+- Blockers: khong co blocker; validation va benchmark TFLite deu PASS
+- Next milestone: Milestone 5, chi khi duoc yeu cau ro rang
+
